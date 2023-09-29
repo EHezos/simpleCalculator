@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        body {
+        background-color: #f1f1f1;
+        }
+        
+        input, select, button {
+          display: block;
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          box-sizing: border-box;
+        }
+      
+        button {
+          background: #007bff;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          align-items: center;
+        }
+        
+        #result {
+          font-size: 20px;
+          font-weight: bold;
+          border: none;
+          background: none;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-group button {
+            margin: 0 10px;
+        }
+        #result {
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            margin-top: 20px;
+        }
+      </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Welcome to basic Calculator</h1>
+    <!--Create a form with input elements for numbers and operator-->
+    <form>
+        <input type="text" id="num1" name="num1" placeholder="Number 1">
+        <input type="text" id="num2" name="num2" placeholder="Number 2">
+        <select name="operator" id="operator">
+            <option value="None">None</option>
+            <option value="Add">Add</option>
+            <option value="Subtract">Subtract</option>
+            <option value="Multiply">Multiply</option>
+            <option value="Divide">Divide</option>
+        </select>
+        <br>
+    </form>
+    <br>
+        <output id="result"></output>
+
+        <div class="button-group">
+        <button type="button" id="button">Calculate</button>
+        <button type="button" id="reset">Reset</button>
+        </div>
+    <!--Create an output element that will display the result-->
+    
+    <!--Write JavaScript code that will add functionality and interactivity-->
+    <script>
+        // Get references to each input, button, and output element
+        let num1 = document.getElementById("num1");
+        let num2 = document.getElementById("num2");
+        let operator = document.getElementById("operator");
+        let button = document.getElementById("button");
+        let result = document.getElementById("result");
+
+        // Define a function that will perform the calculation
+        function calculate() {
+            // Get input values and parse them as numbers
+            let a = parseFloat(num1.value);
+            let b = parseFloat(num2.value);
+            let c;
+
+            // Get operator value
+            let op = operator.value;
+
+            // Perform calculation based on operator
+            switch (op) {
+                case "Add":
+                    c = a + b;
+                    break;
+                case "Subtract":
+                    c = a - b;
+                    break;
+                case "Multiply":
+                    c = a * b;
+                    break;
+                case "Divide":
+                    c = a / b;
+                    break;
+                default:
+                    c = "Invalid operation";
+            }
+
+            // Display result in output element
+            result.value ="The result is : "+ c;
+        }
+        const resetBtn = document.getElementById('reset');
+
+            // Add click event listener to reset button
+            resetBtn.addEventListener('click', () => {
+            // Clear number inputs
+            num1.value = '';
+            num2.value = '';
+
+            // Reset operator select
+            operator.selectedIndex = 0;
+
+            // Clear result
+            result.value = 'Result'; 
+            });
+
+        // Add event listener to button element
+        button.addEventListener("click", calculate);
+    </script>
+</body>
+</html>
